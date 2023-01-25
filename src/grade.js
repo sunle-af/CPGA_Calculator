@@ -1,3 +1,4 @@
+
 import React, { Component, useState } from 'react';
 import { Button, makeStyles, withStyles, TextField } from "@material-ui/core";
 import Dialog from '@material-ui/core/Dialog';
@@ -7,8 +8,8 @@ import Close from "@material-ui/icons/Close";
 const useStyles = makeStyles((theme) => ({
     loginModal: {
         '& .MuiPaper-root': {
-            width: 480,
-            height: 380
+            width: 680,
+            height: 580
         },
         '& .MuiDialogContent-root': {
             padding: "0",
@@ -24,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
         cursor: "pointer"
     },
     loginHeading: {
-        color: "#191a1b",
+        color: "#EAEAEA",
         margin: 0,
-        fontSize: 18,
-        fontWeight: "500",
+        fontSize: 20,
+        fontWeight: "600",
         paddingTop: 60,
     },
     loginInput: {
@@ -133,7 +134,7 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 
-function GradePage() {
+function GradePage({ open, handleClose }) {
     const classes = useStyles();
     const [message, setMessage] = useState('');
 
@@ -155,12 +156,7 @@ function GradePage() {
         console.log('value is:', event.target.value, "  L = ", event.target.value.length);
     };
     const handleClick = event => {
-        event.preventDefault();
-        if(message.length ===10 ){
-            console.log('handleClick 👉️', message);
-        }
-        showOtpScreen(true);
-        shopInputScreen(false);        
+        alert('Hello')    
     };
     const handleChangeMobileClick = event => {
         showOtpScreen(false);
@@ -169,20 +165,25 @@ function GradePage() {
     const handleVerifyOtpClick = event => {
         console.log("handleVerifyOtpClick");  
     }
-    console.log('hello')
     return (
         <div className={classes.loginModalMain}>
-                    { phone && 
+          
+          { phone && 
                     <div className={classes.loginScreen}>
-                    <h4 className={classes.loginHeading}>Login to Your Account</h4>
+                    <h4 className={classes.loginHeading}>Grade Calculator</h4>
                     <TextField onInput={(e) => {
                         e.target.value = Math.max(0, parseInt(e.target.value)).toString().slice(0, 10)
                     }}
-                    label="Enter Mobile" variant='outlined' className={classes.loginInput}  fullWidth onChange={handleChange} value={message} />
+                    label="Enter Mobile" variant='outlined' className={classes.loginInput} type="number" fullWidth onChange={handleChange} value={message} />
                     <Button disabled={!text} variant="contained" className={classes.continueBtn} color="primary" onClick={handleClick} >Continue</Button>
                 </div>
                     }
+
         </div>
     )
 }
+
 export default GradePage;
+
+
+ 
